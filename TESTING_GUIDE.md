@@ -48,10 +48,11 @@ Este documento explica las herramientas, técnicas y fundamentos teóricos de la
 ## Tabla de Contenidos
 
 1. [¿Qué son las Pruebas de Integración?](#qué-son-las-pruebas-de-integración)
-2. [Organización de las Pruebas](#organización-de-las-pruebas)
-3. [Herramientas Utilizadas](#herramientas-utilizadas)
-4. [Patrones y Mejores Prácticas](#patrones-y-mejores-prácticas)
-5. [Referencias](#referencias)
+2. [Enfoques de Integración](#enfoques-de-integración)
+3. [Organización de las Pruebas](#organización-de-las-pruebas)
+4. [Herramientas Utilizadas](#herramientas-utilizadas)
+5. [Patrones y Mejores Prácticas](#patrones-y-mejores-prácticas)
+6. [Referencias](#referencias)
 
 ---
 
@@ -88,6 +89,168 @@ Este proyecto implementa pruebas de integración **end-to-end (E2E)** que:
 4. ✅ Validan flujos de negocio completos
 5. ✅ Verifican la integridad referencial y cascadas
 6. ✅ Prueban casos de éxito y error
+
+---
+
+## Enfoques de Integración
+
+Existen tres enfoques principales para realizar pruebas de integración, que determinan el orden en que se integran y prueban los módulos del sistema (Pressman & Maxim, 2020; Jorgensen, 2018).
+
+### 1. Top-Down (Descendente) 🔺
+
+**Descripción**: Se integran y prueban los módulos desde los niveles más altos de la arquitectura hacia los niveles más bajos.
+
+**Características**:
+- Se comienza con el módulo principal o de control
+- Se utilizan **stubs** (módulos ficticios) para simular módulos de bajo nivel que aún no están integrados
+- Los módulos se van integrando progresivamente hacia abajo en la jerarquía
+
+**Ventajas**:
+- ✅ Las funcionalidades principales se prueban primero
+- ✅ Permite demostrar el sistema tempranamente
+- ✅ Facilita detectar problemas de diseño arquitectónico
+
+**Desventajas**:
+- ❌ Requiere crear muchos stubs inicialmente
+- ❌ Los módulos de bajo nivel (que pueden contener operaciones críticas) se prueban al final
+
+**Diagrama**:
+```
+┌─────────────────┐
+│   AppModule     │  ← Comienza aquí
+├─────────────────┤
+│ Users │ Posts   │  ← Segundo nivel
+├───────┼─────────┤
+│ CRUD  │Comments │  ← Tercer nivel
+└───────┴─────────┘
+```
+
+### 2. Bottom-Up (Ascendente) 🔻
+
+**Descripción**: Se integran y prueban los módulos desde los niveles más bajos hacia los niveles más altos.
+
+**Características**:
+- Se comienza con los módulos de bajo nivel (utilidades, servicios básicos)
+- Se utilizan **drivers** (programas de prueba) para invocar los módulos de bajo nivel
+- Los módulos se van integrando progresivamente hacia arriba
+
+**Ventajas**:
+- ✅ No requiere stubs
+- ✅ Los módulos críticos de bajo nivel se prueban primero
+- ✅ Facilita la paralelización del desarrollo
+
+**Desventajas**:
+- ❌ El programa como entidad no existe hasta muy tarde
+- ❌ Requiere crear drivers de prueba
+- ❌ Problemas de diseño de alto nivel se detectan tardíamente
+
+**Diagrama**:
+```
+┌─────────────────┐
+│   AppModule     │  ← Termina aquí
+├─────────────────┤
+│ Users │ Posts   │  ← Segundo nivel
+├───────┼─────────┤
+│ CRUD  │Comments │  ← Comienza aquí
+└───────┴─────────┘
+```
+
+### 3. Sandwich (Sándwich) 🥪
+
+**Descripción**: Combina los enfoques Top-Down y Bottom-Up simultáneamente.
+
+**Características**:
+- Se prueba desde arriba (módulos de alto nivel) y desde abajo (módulos de bajo nivel) al mismo tiempo
+- Los equipos trabajan en paralelo en diferentes niveles
+- Eventualmente ambos enfoques convergen en el nivel medio
+
+**Ventajas**:
+- ✅ Combina las ventajas de ambos enfoques
+- ✅ Permite paralelizar el trabajo de pruebas
+- ✅ Detecta problemas en ambos extremos tempranamente
+
+**Desventajas**:
+- ❌ Requiere más coordinación entre equipos
+- ❌ Puede ser más complejo de gestionar
+- ❌ Requiere tanto stubs como drivers
+
+**Diagrama**:
+```
+┌─────────────────┐
+│   AppModule     │  ← Top-Down comienza aquí
+├─────────────────┤
+│ Users │ Posts   │  ← Punto de convergencia
+├───────┼─────────┤
+│ CRUD  │Comments │  ← Bottom-Up comienza aquí
+└───────┴─────────┘
+```
+
+---
+
+## Enfoque Utilizado en Este Proyecto
+
+### **Top-Down (Descendente)** 🔺
+
+Este proyecto implementa un enfoque **Top-Down** para las pruebas de integración, como se puede observar en:
+
+#### Evidencia 1: Importación del módulo raíz
+```typescript
+// test/full-flow.integration.e2e-spec.ts:10-16
+beforeEach(async () => {
+  const moduleFixture: TestingModule = await Test.createTestingModule({
+    imports: [AppModule], // ← Se importa el módulo de más alto nivel
+  }).compile();
+
+  app = moduleFixture.createNestApplication();
+  await app.init();
+});
+```
+
+#### Evidencia 2: Flujo de pruebas jerárquico
+Las pruebas están organizadas siguiendo la jerarquía del sistema:
+
+1. **Nivel superior** - `full-flow.integration.e2e-spec.ts`: Prueba el flujo completo User → Post → Comment
+2. **Nivel intermedio** - `users-posts.integration.e2e-spec.ts`: Integración entre Users y Posts
+3. **Nivel intermedio** - `posts-comments.integration.e2e-spec.ts`: Integración entre Posts y Comments
+4. **Nivel específico** - Pruebas de operaciones individuales (CRUD, cascada, errores)
+
+#### Evidencia 3: Estructura de los tests
+```typescript
+// test/full-flow.integration.e2e-spec.ts:24-89
+it('debe crear usuario, post y comentario, verificando todas las relaciones', async () => {
+  // 1. Nivel superior: Crear usuario
+  const userResponse = await request(app.getHttpServer())
+    .post('/users')
+    .send({ name: 'Carlos Mendes', email: 'carlos@example.com', age: 30 })
+    .expect(201);
+
+  // 2. Nivel intermedio: Crear post asociado al usuario
+  const postResponse = await request(app.getHttpServer())
+    .post('/posts')
+    .send({ title: 'Mi primer post', authorId: userId })
+    .expect(201);
+
+  // 3. Nivel inferior: Crear comentario asociado al post
+  const commentResponse = await request(app.getHttpServer())
+    .post('/comments')
+    .send({ content: 'Excelente post!', authorId: userId, postId: postId })
+    .expect(201);
+
+  // 4. Verificar integridad desde arriba hacia abajo
+  const postWithRelations = await request(app.getHttpServer())
+    .get(`/posts/${postId}`)
+    .expect(200);
+});
+```
+
+#### Justificación del enfoque Top-Down
+
+Este proyecto utiliza Top-Down porque:
+
+1. **Contexto completo desde el inicio**: Al importar `AppModule`, se cargan todos los módulos, servicios y dependencias reales
+2. **Pruebas end-to-end**: Se prueba el sistema como lo usaría un usuario final, desde las rutas HTTP hasta la base de datos
+3. **Detección temprana de problemas arquitectónicos**: Los problemas de diseño en la estructura de módulos se detectan inmediatamente
+4. **No requiere stubs**: Al usar una base de datos real (SQLite en memoria), no es necesario simular módulos de bajo nivel
 
 ---
 
@@ -531,19 +694,35 @@ Time:        3.478 s
 
 ### Libros y Publicaciones Académicas
 
-Martin, R. C. (2008). *Clean Code: A Handbook of Agile Software Craftsmanship*. Prentice Hall.
+Ammann, P., & Offutt, J. (2017). *Introduction to software testing* (2nd ed.). Cambridge University Press.
 
-Myers, G. J., Sandler, C., & Badgett, T. (2011). *The Art of Software Testing* (3rd ed.). John Wiley & Sons.
+Fowler, M. (2018). *Refactoring: Improving the design of existing code* (2nd ed.). Addison-Wesley Professional.
 
-Sommerville, I. (2016). *Software Engineering* (10th ed.). Pearson Education.
+Humble, J., & Farley, D. (2010). *Continuous delivery: Reliable software releases through build, test, and deployment automation*. Addison-Wesley Professional.
+
+IEEE Computer Society. (2022). *IEEE standard for software and system test documentation* (IEEE Std 829-2022). IEEE.
+
+Jorgensen, P. C. (2018). *Software testing: A craftsman's approach* (4th ed.). CRC Press.
+
+Martin, R. C. (2008). *Clean code: A handbook of agile software craftsmanship*. Prentice Hall.
+
+Myers, G. J., Sandler, C., & Badgett, T. (2011). *The art of software testing* (3rd ed.). John Wiley & Sons.
+
+Patton, R. (2005). *Software testing* (2nd ed.). Sams Publishing.
+
+Pressman, R. S., & Maxim, B. R. (2020). *Software engineering: A practitioner's approach* (9th ed.). McGraw-Hill Education.
+
+Sommerville, I. (2016). *Software engineering* (10th ed.). Pearson Education.
+
+Spillner, A., Linz, T., & Schaefer, H. (2014). *Software testing foundations: A study guide for the certified tester exam* (4th ed.). Rocky Nook.
 
 ### Documentación Técnica Oficial
 
-Jest. (2024). *Jest Documentation*. https://jestjs.io/docs/getting-started
+Jest. (2024). *Jest documentation*. https://jestjs.io/docs/getting-started
 
-NestJS. (2024). *Testing - NestJS Documentation*. https://docs.nestjs.com/fundamentals/testing
+NestJS. (2024). *Testing*. En *NestJS documentation*. https://docs.nestjs.com/fundamentals/testing
 
-TypeORM. (2024). *TypeORM Documentation*. https://typeorm.io
+TypeORM. (2024). *Testing*. En *TypeORM documentation*. https://typeorm.io/testing
 
 ### Recursos de Desarrollo
 
@@ -551,15 +730,21 @@ Supertest. (2024). *Supertest: Super-agent driven library for testing HTTP serve
 
 ### Artículos y Recursos Web
 
-Fowler, M. (2021). *IntegrationTest*. Martin Fowler's Bliki. https://martinfowler.com/bliki/IntegrationTest.html
-
 Fowler, M. (2018). *TestPyramid*. Martin Fowler's Bliki. https://martinfowler.com/bliki/TestPyramid.html
+
+Fowler, M. (2021). *IntegrationTest*. Martin Fowler's Bliki. https://martinfowler.com/bliki/IntegrationTest.html
 
 ---
 
 ## Notas sobre las Referencias
 
 - Las referencias siguen el formato **APA 7** (American Psychological Association, 7th edition)
-- Se incluyen fuentes académicas reconocidas en ingeniería de software
-- La documentación oficial se cita como fuente primaria para las herramientas utilizadas
+- Se incluyen fuentes académicas reconocidas en ingeniería de software y pruebas de integración
+- Las referencias sobre enfoques de integración (Top-Down, Bottom-Up, Sandwich) provienen de:
+  - Pressman & Maxim (2020): Enfoque práctico de ingeniería de software
+  - Jorgensen (2018): Enfoque artesanal de pruebas de software
+  - Myers et al. (2011): Arte de las pruebas de software
+  - Spillner et al. (2014): Fundamentos de pruebas certificadas
+- La documentación oficial se cita como fuente primaria para las herramientas utilizadas (NestJS, TypeORM, Jest)
 - Los artículos de Martin Fowler son referencias estándar en la industria para patrones de testing
+- IEEE 829-2022 es el estándar actual para documentación de pruebas de software
