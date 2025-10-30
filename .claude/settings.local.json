@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(npm install:*)",
-      "Bash(npm run test:e2e:*)"
+      "Bash(npm run test:e2e:*)",
+      "Bash(npm run test:e2e:cov:*)",
+      "Bash(npm run test:e2e:verbose:*)",
+      "Bash(npm run test:e2e:silent:*)"
     ],
     "deny": [],
     "ask": []
