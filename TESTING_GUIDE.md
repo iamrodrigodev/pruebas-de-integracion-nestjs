@@ -309,11 +309,29 @@ it('debe crear un usuario, publicar un post y agregar comentarios', async () => 
 ```
 
 **Scripts disponibles**:
+
+**Comandos Básicos:**
 ```bash
-npm run test          # Pruebas unitarias
-npm run test:e2e      # Pruebas de integración
+npm run test          # Pruebas de integración e2e
+npm run test:e2e      # Pruebas de integración e2e
+npm run test:watch    # Modo watch (re-ejecuta al guardar cambios)
+npm run test:e2e:watch # Modo watch para e2e
 npm run test:cov      # Cobertura de código
-npm run test:watch    # Modo watch
+npm run test:e2e:cov  # Cobertura de pruebas e2e
+```
+
+**Comandos de Depuración:**
+```bash
+npm run test:debug       # Modo debug
+npm run test:e2e:debug   # Modo debug para e2e
+npm run test:e2e:verbose # Información detallada de cada test
+npm run test:e2e:silent  # Solo muestra errores
+```
+
+**Comandos para CI/CD:**
+```bash
+npm run test:e2e:bail # Detener en el primer test fallido
+npm run test:e2e:ci   # Optimizado para CI/CD
 ```
 
 ---
@@ -665,18 +683,102 @@ await request(app.getHttpServer())
 
 ## Ejecutar las Pruebas
 
+### Comandos Básicos
+
 ```bash
-# Todas las pruebas e2e
+# Ejecutar todas las pruebas de integración
+npm run test
 npm run test:e2e
 
-# Con coverage
-npm run test:cov
+# Ver resultados en tiempo real mientras desarrollas
+npm run test:watch
+npm run test:e2e:watch
 
-# Modo watch (re-ejecuta al guardar)
+# Generar reporte de cobertura de código
+npm run test:cov
+npm run test:e2e:cov
+```
+
+### Comandos de Depuración
+
+```bash
+# Modo debug (conectar debugger de VS Code o Chrome DevTools)
+npm run test:debug
+npm run test:e2e:debug
+
+# Modo verbose (muestra información detallada de cada test)
+npm run test:e2e:verbose
+
+# Modo silent (solo muestra errores)
+npm run test:e2e:silent
+```
+
+### Comandos para CI/CD
+
+```bash
+# Detener en el primer test fallido (útil para encontrar errores rápidamente)
+npm run test:e2e:bail
+
+# Optimizado para entornos de integración continua
+# - Ejecuta con --ci flag (evita animaciones y salida interactiva)
+# - Genera reporte de cobertura automáticamente
+# - Limita workers a 2 para estabilidad en CI
+npm run test:e2e:ci
+```
+
+### Explicación de los Comandos
+
+| Comando | Descripción | Cuándo usarlo |
+|---------|-------------|---------------|
+| `test` / `test:e2e` | Ejecuta todas las pruebas una vez | Antes de hacer commit, para verificar que todo funciona |
+| `test:watch` / `test:e2e:watch` | Re-ejecuta automáticamente al guardar archivos | Durante el desarrollo activo de features |
+| `test:cov` / `test:e2e:cov` | Genera reporte de cobertura en `coverage/` | Para analizar qué código está cubierto por tests |
+| `test:debug` / `test:e2e:debug` | Abre debugger en puerto 9229 | Para depurar tests que fallan (conectar VS Code o Chrome DevTools) |
+| `test:e2e:verbose` | Muestra detalles completos de cada test | Para entender exactamente qué está pasando en cada test |
+| `test:e2e:silent` | Solo muestra errores y resumen final | Para logs más limpios en CI/CD |
+| `test:e2e:bail` | Detiene al primer test fallido | Para encontrar y solucionar errores rápidamente |
+| `test:e2e:ci` | Ejecuta con configuraciones optimizadas para CI | En GitHub Actions, GitLab CI, Jenkins, etc. |
+
+### Ejemplos de Uso
+
+**Desarrollo diario:**
+```bash
+# Mientras desarrollas, mantén este comando corriendo
 npm run test:watch
 
-# Debug
-npm run test:debug
+# Cuando termines una feature, verifica cobertura
+npm run test:cov
+```
+
+**Depuración:**
+```bash
+# 1. Ejecuta el test en modo debug
+npm run test:e2e:debug
+
+# 2. Abre Chrome y ve a: chrome://inspect
+# 3. Click en "inspect" en el target de Node
+# 4. Agrega breakpoints en DevTools
+```
+
+**En VS Code:**
+```json
+// .vscode/launch.json
+{
+  "type": "node",
+  "request": "launch",
+  "name": "Jest Debug",
+  "program": "${workspaceFolder}/node_modules/.bin/jest",
+  "args": ["--config", "./test/jest-e2e.json", "--runInBand"],
+  "console": "integratedTerminal",
+  "internalConsoleOptions": "neverOpen"
+}
+```
+
+**CI/CD:**
+```yaml
+# .github/workflows/test.yml
+- name: Run Integration Tests
+  run: npm run test:e2e:ci
 ```
 
 ## Resultado Esperado

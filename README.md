@@ -123,15 +123,44 @@ npm run start:prod
 
 ## Ejecutar Pruebas
 
+### Comandos Básicos
+
 ```bash
-# Pruebas e2e
+# Ejecutar todas las pruebas de integración
+npm run test
 npm run test:e2e
 
-# Pruebas unitarias
-npm run test
+# Ver resultados en tiempo real mientras desarrollas
+npm run test:watch
+npm run test:e2e:watch
 
-# Cobertura
+# Generar reporte de cobertura de código
 npm run test:cov
+npm run test:e2e:cov
+```
+
+### Comandos de Depuración
+
+```bash
+# Modo debug (conectar debugger de VS Code o Chrome DevTools)
+npm run test:debug
+npm run test:e2e:debug
+
+# Modo verbose (muestra información detallada de cada test)
+npm run test:e2e:verbose
+
+# Modo silent (solo muestra errores)
+npm run test:e2e:silent
+```
+
+### Comandos para CI/CD
+
+```bash
+# Detener en el primer test fallido (útil para encontrar errores rápidamente)
+npm run test:e2e:bail
+
+# Optimizado para entornos de integración continua
+npm run test:e2e:ci
 ```
 
 ## Endpoints Disponibles
