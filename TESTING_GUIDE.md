@@ -43,7 +43,81 @@
 
 # Guía de Pruebas de Integración
 
-Este documento explica las herramientas y técnicas utilizadas en las pruebas de integración de este proyecto.
+Este documento explica las herramientas, técnicas y fundamentos teóricos de las pruebas de integración implementadas en este proyecto.
+
+## Tabla de Contenidos
+
+1. [¿Qué son las Pruebas de Integración?](#qué-son-las-pruebas-de-integración)
+2. [Organización de las Pruebas](#organización-de-las-pruebas)
+3. [Herramientas Utilizadas](#herramientas-utilizadas)
+4. [Patrones y Mejores Prácticas](#patrones-y-mejores-prácticas)
+5. [Referencias](#referencias)
+
+---
+
+## ¿Qué son las Pruebas de Integración?
+
+Las **pruebas de integración** son un tipo de prueba de software que verifica la interacción correcta entre múltiples componentes o módulos del sistema cuando se integran (Sommerville, 2016). A diferencia de las pruebas unitarias que validan componentes aislados, las pruebas de integración evalúan:
+
+- **Comunicación entre módulos**: Verifican que los datos fluyan correctamente entre diferentes partes del sistema
+- **Interfaces y contratos**: Validan que las APIs y contratos entre módulos se respeten
+- **Comportamiento del sistema**: Prueban escenarios realistas que involucran múltiples componentes
+- **Infraestructura real**: Utilizan bases de datos, servicios externos y otros recursos reales o similares
+
+### Niveles de Testing (Myers et al., 2011)
+
+```
+┌─────────────────────────────┐
+│   Pruebas de Aceptación     │  ← Usuario final
+├─────────────────────────────┤
+│   Pruebas de Sistema        │  ← Sistema completo
+├─────────────────────────────┤
+│  Pruebas de Integración     │  ← Múltiples módulos (Este proyecto)
+├─────────────────────────────┤
+│   Pruebas Unitarias         │  ← Componentes individuales
+└─────────────────────────────┘
+```
+
+### Características de las Pruebas de Integración en este Proyecto
+
+Este proyecto implementa pruebas de integración **end-to-end (E2E)** que:
+
+1. ✅ Prueban la aplicación completa (controladores + servicios + base de datos)
+2. ✅ Utilizan una base de datos real (SQLite en memoria)
+3. ✅ Realizan peticiones HTTP reales
+4. ✅ Validan flujos de negocio completos
+5. ✅ Verifican la integridad referencial y cascadas
+6. ✅ Prueban casos de éxito y error
+
+---
+
+## Organización de las Pruebas
+
+Las pruebas están organizadas por **contexto de integración**, siguiendo el principio de responsabilidad única (Martin, 2008):
+
+### Estructura de Archivos de Prueba
+
+| Archivo | Responsabilidad | Tests |
+|---------|----------------|-------|
+| `users.e2e-spec.ts` | CRUD básico de usuarios | 11 |
+| `full-flow.integration.e2e-spec.ts` | Flujos completos User→Post→Comment | 3 |
+| `users-posts.integration.e2e-spec.ts` | Integración Users ↔ Posts | 7 |
+| `posts-comments.integration.e2e-spec.ts` | Integración Posts ↔ Comments | 7 |
+| `cascade-operations.integration.e2e-spec.ts` | Eliminación en cascada | 7 |
+| `update-operations.integration.e2e-spec.ts` | Actualización de entidades | 7 |
+| `error-handling.integration.e2e-spec.ts` | Manejo de errores | 19 |
+
+**Total: 7 suites, 61 tests**
+
+### Ventajas de esta Organización
+
+- **Mantenibilidad**: Archivos de ~150-300 líneas vs un monolito de 474 líneas
+- **Claridad**: El nombre del archivo describe su propósito
+- **Ejecución selectiva**: Puedes ejecutar solo las pruebas que necesitas
+- **Colaboración**: Reduce conflictos en control de versiones
+- **Escalabilidad**: Fácil agregar nuevas pruebas sin saturar un archivo
+
+---
 
 ## Herramientas Utilizadas
 
@@ -445,17 +519,47 @@ npm run test:debug
 ## Resultado Esperado
 
 ```
-Test Suites: 3 passed, 3 total
-Tests:       22 passed, 22 total
+Test Suites: 7 passed, 7 total
+Tests:       61 passed, 61 total
 Snapshots:   0 total
-Time:        2.908 s
+Time:        3.478 s
 ```
 
 ---
 
-## Recursos Adicionales
+## Referencias
 
-- [NestJS Testing Docs](https://docs.nestjs.com/fundamentals/testing)
-- [Jest Documentation](https://jestjs.io/docs/getting-started)
-- [Supertest GitHub](https://github.com/visionmedia/supertest)
-- [TypeORM Testing](https://typeorm.io/example-with-express)
+### Libros y Publicaciones Académicas
+
+Martin, R. C. (2008). *Clean Code: A Handbook of Agile Software Craftsmanship*. Prentice Hall.
+
+Myers, G. J., Sandler, C., & Badgett, T. (2011). *The Art of Software Testing* (3rd ed.). John Wiley & Sons.
+
+Sommerville, I. (2016). *Software Engineering* (10th ed.). Pearson Education.
+
+### Documentación Técnica Oficial
+
+Jest. (2024). *Jest Documentation*. https://jestjs.io/docs/getting-started
+
+NestJS. (2024). *Testing - NestJS Documentation*. https://docs.nestjs.com/fundamentals/testing
+
+TypeORM. (2024). *TypeORM Documentation*. https://typeorm.io
+
+### Recursos de Desarrollo
+
+Supertest. (2024). *Supertest: Super-agent driven library for testing HTTP servers* [Software]. GitHub. https://github.com/visionmedia/supertest
+
+### Artículos y Recursos Web
+
+Fowler, M. (2021). *IntegrationTest*. Martin Fowler's Bliki. https://martinfowler.com/bliki/IntegrationTest.html
+
+Fowler, M. (2018). *TestPyramid*. Martin Fowler's Bliki. https://martinfowler.com/bliki/TestPyramid.html
+
+---
+
+## Notas sobre las Referencias
+
+- Las referencias siguen el formato **APA 7** (American Psychological Association, 7th edition)
+- Se incluyen fuentes académicas reconocidas en ingeniería de software
+- La documentación oficial se cita como fuente primaria para las herramientas utilizadas
+- Los artículos de Martin Fowler son referencias estándar en la industria para patrones de testing
