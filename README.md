@@ -61,15 +61,13 @@ Este proyecto demuestra cómo implementar pruebas de integración en NestJS usan
 [![Supertest][Supertest]][supertest-site]
 [![Testing Library][TestingLibrary]][testing-library-site]
 
-> **ℹ️ Más detalles sobre cada herramienta en [TESTING_GUIDE.md](./TESTING_GUIDE.md)**
-
 ---
 
 ## Descripción
 
 Aplicación de ejemplo que implementa un sistema de blog con usuarios, posts y comentarios. Incluye pruebas de integración completas que demuestran la interacción entre módulos y el uso de base de datos en memoria para testing.
 
-> **📖 Para una guía completa sobre las herramientas y técnicas de testing utilizadas en este proyecto, consulta [TESTING_GUIDE.md](./TESTING_GUIDE.md)**
+> **Para una guía completa sobre las herramientas y técnicas de testing utilizadas en este proyecto, consulta [TESTING_GUIDE.md](./TESTING_GUIDE.md)**
 
 ## Estructura del Proyecto
 
@@ -102,8 +100,8 @@ El proyecto incluye tres módulos interrelacionados:
 ### Resultados de las Pruebas
 
 ```
-Test Suites: 3 passed, 3 total
-Tests:       22 passed, 22 total
+Test Suites: 2 passed, 2 total
+Tests:       21 passed, 21 total
 ```
 
 ## Instalación
@@ -202,7 +200,6 @@ src/
 └── app.module.ts   # Módulo principal
 
 test/
-├── app.e2e-spec.ts          # Pruebas básicas
 ├── users.e2e-spec.ts        # Pruebas de usuarios
 └── integration.e2e-spec.ts  # Pruebas de integración
 ```
