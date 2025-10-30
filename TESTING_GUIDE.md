@@ -694,57 +694,42 @@ Time:        3.478 s
 
 ### Libros y Publicaciones Académicas
 
-Ammann, P., & Offutt, J. (2017). *Introduction to software testing* (2nd ed.). Cambridge University Press.
+1. Ammann, P., & Offutt, J. (2017). *Introduction to software testing* (2nd ed.). Cambridge University Press.
 
-Fowler, M. (2018). *Refactoring: Improving the design of existing code* (2nd ed.). Addison-Wesley Professional.
+2. Fowler, M. (2018). *Refactoring: Improving the design of existing code* (2nd ed.). Addison-Wesley Professional.
 
-Humble, J., & Farley, D. (2010). *Continuous delivery: Reliable software releases through build, test, and deployment automation*. Addison-Wesley Professional.
+3. Humble, J., & Farley, D. (2010). *Continuous delivery: Reliable software releases through build, test, and deployment automation*. Addison-Wesley Professional.
 
-IEEE Computer Society. (2022). *IEEE standard for software and system test documentation* (IEEE Std 829-2022). IEEE.
+4. IEEE Computer Society. (2022). *IEEE standard for software and system test documentation* (IEEE Std 829-2022). IEEE.
 
-Jorgensen, P. C. (2018). *Software testing: A craftsman's approach* (4th ed.). CRC Press.
+5. Jorgensen, P. C. (2018). *Software testing: A craftsman's approach* (4th ed.). CRC Press.
 
-Martin, R. C. (2008). *Clean code: A handbook of agile software craftsmanship*. Prentice Hall.
+6. Martin, R. C. (2008). *Clean code: A handbook of agile software craftsmanship*. Prentice Hall.
 
-Myers, G. J., Sandler, C., & Badgett, T. (2011). *The art of software testing* (3rd ed.). John Wiley & Sons.
+7. Myers, G. J., Sandler, C., & Badgett, T. (2011). *The art of software testing* (3rd ed.). John Wiley & Sons.
 
-Patton, R. (2005). *Software testing* (2nd ed.). Sams Publishing.
+8. Patton, R. (2005). *Software testing* (2nd ed.). Sams Publishing.
 
-Pressman, R. S., & Maxim, B. R. (2020). *Software engineering: A practitioner's approach* (9th ed.). McGraw-Hill Education.
+9. Pressman, R. S., & Maxim, B. R. (2020). *Software engineering: A practitioner's approach* (9th ed.). McGraw-Hill Education.
 
-Sommerville, I. (2016). *Software engineering* (10th ed.). Pearson Education.
+10. Sommerville, I. (2016). *Software engineering* (10th ed.). Pearson Education.
 
-Spillner, A., Linz, T., & Schaefer, H. (2014). *Software testing foundations: A study guide for the certified tester exam* (4th ed.). Rocky Nook.
+11. Spillner, A., Linz, T., & Schaefer, H. (2014). *Software testing foundations: A study guide for the certified tester exam* (4th ed.). Rocky Nook.
 
 ### Documentación Técnica Oficial
 
-Jest. (2024). *Jest documentation*. https://jestjs.io/docs/getting-started
+12. Jest. (2024). *Jest documentation*. https://jestjs.io/docs/getting-started
 
-NestJS. (2024). *Testing*. En *NestJS documentation*. https://docs.nestjs.com/fundamentals/testing
+13. NestJS. (2024). *Testing*. En *NestJS documentation*. https://docs.nestjs.com/fundamentals/testing
 
-TypeORM. (2024). *Testing*. En *TypeORM documentation*. https://typeorm.io/testing
+14. TypeORM. (2024). *Testing*. En *TypeORM documentation*. https://typeorm.io/testing
 
 ### Recursos de Desarrollo
 
-Supertest. (2024). *Supertest: Super-agent driven library for testing HTTP servers* [Software]. GitHub. https://github.com/visionmedia/supertest
+15. Supertest. (2024). *Supertest: Super-agent driven library for testing HTTP servers* [Software]. GitHub. https://github.com/visionmedia/supertest
 
 ### Artículos y Recursos Web
 
-Fowler, M. (2018). *TestPyramid*. Martin Fowler's Bliki. https://martinfowler.com/bliki/TestPyramid.html
+16. Fowler, M. (2018). *TestPyramid*. Martin Fowler's Bliki. https://martinfowler.com/bliki/TestPyramid.html
 
-Fowler, M. (2021). *IntegrationTest*. Martin Fowler's Bliki. https://martinfowler.com/bliki/IntegrationTest.html
-
----
-
-## Notas sobre las Referencias
-
-- Las referencias siguen el formato **APA 7** (American Psychological Association, 7th edition)
-- Se incluyen fuentes académicas reconocidas en ingeniería de software y pruebas de integración
-- Las referencias sobre enfoques de integración (Top-Down, Bottom-Up, Sandwich) provienen de:
-  - Pressman & Maxim (2020): Enfoque práctico de ingeniería de software
-  - Jorgensen (2018): Enfoque artesanal de pruebas de software
-  - Myers et al. (2011): Arte de las pruebas de software
-  - Spillner et al. (2014): Fundamentos de pruebas certificadas
-- La documentación oficial se cita como fuente primaria para las herramientas utilizadas (NestJS, TypeORM, Jest)
-- Los artículos de Martin Fowler son referencias estándar en la industria para patrones de testing
-- IEEE 829-2022 es el estándar actual para documentación de pruebas de software
+17. Fowler, M. (2021). *IntegrationTest*. Martin Fowler's Bliki. https://martinfowler.com/bliki/IntegrationTest.html
