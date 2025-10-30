@@ -100,8 +100,8 @@ El proyecto incluye tres módulos interrelacionados:
 ### Resultados de las Pruebas
 
 ```
-Test Suites: 2 passed, 2 total
-Tests:       21 passed, 21 total
+Test Suites: 7 passed, 7 total
+Tests:       61 passed, 61 total
 ```
 
 ## Instalación
@@ -200,8 +200,13 @@ src/
 └── app.module.ts   # Módulo principal
 
 test/
-├── users.e2e-spec.ts        # Pruebas de usuarios
-└── integration.e2e-spec.ts  # Pruebas de integración
+├── users.e2e-spec.ts                           # Pruebas CRUD de usuarios
+├── full-flow.integration.e2e-spec.ts           # Flujo completo User→Post→Comment
+├── users-posts.integration.e2e-spec.ts         # Integración Users ↔ Posts
+├── posts-comments.integration.e2e-spec.ts      # Integración Posts ↔ Comments
+├── cascade-operations.integration.e2e-spec.ts  # Eliminación en cascada
+├── update-operations.integration.e2e-spec.ts   # Actualización de entidades
+└── error-handling.integration.e2e-spec.ts      # Manejo de errores
 ```
 
 ## Documentación Adicional
