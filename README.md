@@ -45,6 +45,26 @@
 
 Este proyecto demuestra cómo implementar pruebas de integración en NestJS usando TypeORM con SQLite en memoria.
 
+## Tecnologías Utilizadas
+
+### Stack Principal
+
+[![NestJS][NestJS]][nestjs-site]
+[![TypeScript][TypeScript]][typescript-site]
+[![Node.js][Nodejs]][nodejs-site]
+[![TypeORM][TypeORM]][typeorm-site]
+[![SQLite][SQLite]][sqlite-site]
+
+### Tecnologías de Pruebas
+
+[![Jest][Jest]][jest-site]
+[![Supertest][Supertest]][supertest-site]
+[![Testing Library][TestingLibrary]][testing-library-site]
+
+> **ℹ️ Más detalles sobre cada herramienta en [TESTING_GUIDE.md](./TESTING_GUIDE.md)**
+
+---
+
 ## Descripción
 
 Aplicación de ejemplo que implementa un sistema de blog con usuarios, posts y comentarios. Incluye pruebas de integración completas que demuestran la interacción entre módulos y el uso de base de datos en memoria para testing.
@@ -164,48 +184,6 @@ curl -X POST http://localhost:3000/comments \
 curl http://localhost:3000/posts/1
 ```
 
-## Tecnologías Utilizadas
-
-### Stack Principal
-
-[![NestJS][NestJS]][nestjs-site]
-[![TypeScript][TypeScript]][typescript-site]
-[![Node.js][Nodejs]][nodejs-site]
-[![TypeORM][TypeORM]][typeorm-site]
-[![SQLite][SQLite]][sqlite-site]
-
-### Tecnologías de Pruebas
-
-[![Jest][Jest]][jest-site]
-[![Supertest][Supertest]][supertest-site]
-[![Testing Library][TestingLibrary]][testing-library-site]
-
-> **ℹ️ Más detalles sobre cada herramienta en [TESTING_GUIDE.md](./TESTING_GUIDE.md)**
-
-[NestJS]: https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white
-[nestjs-site]: https://nestjs.com/
-
-[TypeScript]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white
-[typescript-site]: https://www.typescriptlang.org/
-
-[Nodejs]: https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white
-[nodejs-site]: https://nodejs.org/
-
-[TypeORM]: https://img.shields.io/badge/TypeORM-FE0803?style=for-the-badge&logo=typeorm&logoColor=white
-[typeorm-site]: https://typeorm.io/
-
-[SQLite]: https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white
-[sqlite-site]: https://www.sqlite.org/
-
-[Jest]: https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white
-[jest-site]: https://jestjs.io/
-
-[Supertest]: https://img.shields.io/badge/Supertest-07C160?style=for-the-badge&logo=node.js&logoColor=white
-[supertest-site]: https://github.com/visionmedia/supertest
-
-[TestingLibrary]: https://img.shields.io/badge/Testing_Library-E33332?style=for-the-badge&logo=testing-library&logoColor=white
-[testing-library-site]: https://testing-library.com/
-
 ## Aprendizajes Clave
 
 1. **Base de datos en memoria**: SQLite en memoria permite pruebas rápidas y aisladas
@@ -238,3 +216,30 @@ test/
   - SQLite en memoria vs MongoMemoryServer
   - Patrones de testing (AAA, hooks)
   - Mejores prácticas implementadas
+
+---
+
+<!-- Referencias de badges -->
+[NestJS]: https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white
+[nestjs-site]: https://nestjs.com/
+
+[TypeScript]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white
+[typescript-site]: https://www.typescriptlang.org/
+
+[Nodejs]: https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white
+[nodejs-site]: https://nodejs.org/
+
+[TypeORM]: https://img.shields.io/badge/TypeORM-FE0803?style=for-the-badge&logo=typeorm&logoColor=white
+[typeorm-site]: https://typeorm.io/
+
+[SQLite]: https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white
+[sqlite-site]: https://www.sqlite.org/
+
+[Jest]: https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white
+[jest-site]: https://jestjs.io/
+
+[Supertest]: https://img.shields.io/badge/Supertest-07C160?style=for-the-badge&logo=node.js&logoColor=white
+[supertest-site]: https://github.com/visionmedia/supertest
+
+[TestingLibrary]: https://img.shields.io/badge/Testing_Library-E33332?style=for-the-badge&logo=testing-library&logoColor=white
+[testing-library-site]: https://testing-library.com/

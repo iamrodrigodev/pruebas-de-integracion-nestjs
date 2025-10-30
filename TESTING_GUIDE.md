@@ -1,3 +1,46 @@
+<div align="center">
+<table>
+    <thead>
+        <tr>
+            <th>
+                <img src="https://github.com/RodrigoStranger/imagenes-la-salle/blob/main/logo_secundario_color.png?raw=true" width="150"/>
+            </th>
+            <th>
+                <span style="font-weight:bold;">UNIVERSIDAD LA SALLE DE AREQUIPA</span><br />
+                <span style="font-weight:bold;">FACULTAD DE INGENIERÍAS Y ARQUITECTURA</span><br />
+                <span style="font-weight:bold;">DEPARTAMENTO ACADEMICO DE INGENIERÍA Y MATEMÁTICAS</span><br />
+                <span style="font-weight:bold;">CARRERA PROFESIONAL DE INGENIERÍA DE SOFTWARE</span>
+            </th>
+        </tr>
+    </thead>
+</table>
+</div>
+
+<div align="center">
+  <h2 style="font-weight:bold;">CALIDAD DE SOFTWARE</h2>
+</div>
+
+<div align="center">
+<table>
+    <thead>
+        <tr>
+            <th><strong>Semestre</strong></th>
+            <th><strong>Profesora</strong></th>
+            <th><strong>Créditos</strong></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td align="center">2025 II</td>
+            <td align="center">Maribel Molina Barriga</td>
+            <td align="center">3</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+---
+
 # Guía de Pruebas de Integración
 
 Este documento explica las herramientas y técnicas utilizadas en las pruebas de integración de este proyecto.
