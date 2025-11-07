@@ -3,6 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { App } from 'supertest/types';
 import { AppModule } from './../src/app.module';
+import { QueryFailedExceptionFilter } from './../src/filters/query-failed-exception.filter';
 
 describe('UsersController (e2e)', () => {
   let app: INestApplication<App>;
@@ -13,6 +14,7 @@ describe('UsersController (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    app.useGlobalFilters(new QueryFailedExceptionFilter());
     await app.init();
   });
 
