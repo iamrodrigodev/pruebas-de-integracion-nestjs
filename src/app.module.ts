@@ -6,6 +6,7 @@ import { CommentsModule } from './comments/comments.module';
 import { User } from './users/user.entity';
 import { Post } from './posts/post.entity';
 import { Comment } from './comments/comment.entity';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -19,5 +20,6 @@ import { Comment } from './comments/comment.entity';
     PostsModule,
     CommentsModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}
