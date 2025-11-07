@@ -26,7 +26,8 @@
     "test:e2e:bail": "jest --config ./test/jest-e2e.json --bail",
     "test:e2e:ci": "jest --config ./test/jest-e2e.json --ci --coverage --maxWorkers=2",
     "test:all": "npm run test:cov; npm run test:e2e:cov",
-    "sonar": "sonar-scanner"
+    "sonar": "sonar-scanner",
+    "sonar:local": "sonar-scanner -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqa_7218f8ae2f191494a6f57ac201927de34241f031"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
