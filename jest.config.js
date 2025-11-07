@@ -16,17 +16,6 @@ module.exports = {
   ],
   coverageDirectory: '../coverage',
   coverageProvider: 'v8',
-  reporters: [
-    'default',
-    ['jest-junit', {
-      outputDirectory: './coverage',
-      outputName: 'junit.xml',
-      classNameTemplate: '{classname}',
-      titleTemplate: '{title}',
-      ancestorSeparator: ' › ',
-      usePathForSuiteName: true
-    }]
-  ],
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/$1'
   }
