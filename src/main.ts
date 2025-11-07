@@ -4,7 +4,15 @@ import { QueryFailedExceptionFilter } from './filters/query-failed-exception.fil
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  
   app.useGlobalFilters(new QueryFailedExceptionFilter());
-  await app.listen(process.env.PORT ?? 3000);
+
+  const port = Number(process.env.PORT) || 3000;
+  await app.listen(port);
+  console.log(`🚀 Server running on: http://localhost:${port}`);
 }
-bootstrap();
+
+bootstrap().catch((err) => {
+  console.error('Error starting application:', err);
+  process.exit(1);
+});

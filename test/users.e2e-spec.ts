@@ -30,16 +30,18 @@ describe('UsersController (e2e)', () => {
         age: 25,
       };
 
+      const checkCreateUserResponse = (res: request.Response) => {
+        expect(res.body).toHaveProperty('id');
+        expect(res.body.name).toBe(createUserDto.name);
+        expect(res.body.email).toBe(createUserDto.email);
+        expect(res.body.age).toBe(createUserDto.age);
+      };
+
       return request(app.getHttpServer())
         .post('/users')
         .send(createUserDto)
         .expect(201)
-        .expect((res) => {
-          expect(res.body).toHaveProperty('id');
-          expect(res.body.name).toBe(createUserDto.name);
-          expect(res.body.email).toBe(createUserDto.email);
-          expect(res.body.age).toBe(createUserDto.age);
-        });
+        .expect(checkCreateUserResponse);
     });
 
     it('should create multiple users with different IDs', async () => {
@@ -93,14 +95,16 @@ describe('UsersController (e2e)', () => {
       await request(app.getHttpServer()).post('/users').send(user1);
       await request(app.getHttpServer()).post('/users').send(user2);
 
+      const checkGetAllUsersResponse = (res: request.Response) => {
+        expect(res.body).toHaveLength(2);
+        expect(res.body[0].name).toBe(user1.name);
+        expect(res.body[1].name).toBe(user2.name);
+      };
+
       return request(app.getHttpServer())
         .get('/users')
         .expect(200)
-        .expect((res) => {
-          expect(res.body).toHaveLength(2);
-          expect(res.body[0].name).toBe(user1.name);
-          expect(res.body[1].name).toBe(user2.name);
-        });
+        .expect(checkGetAllUsersResponse);
     });
   });
 
@@ -118,23 +122,27 @@ describe('UsersController (e2e)', () => {
 
       const userId = createResponse.body.id;
 
+      const checkGetUserByIdResponse = (res: request.Response) => {
+        expect(res.body.id).toBe(userId);
+        expect(res.body.name).toBe(createUserDto.name);
+        expect(res.body.email).toBe(createUserDto.email);
+      };
+
       return request(app.getHttpServer())
         .get(`/users/${userId}`)
         .expect(200)
-        .expect((res) => {
-          expect(res.body.id).toBe(userId);
-          expect(res.body.name).toBe(createUserDto.name);
-          expect(res.body.email).toBe(createUserDto.email);
-        });
+        .expect(checkGetUserByIdResponse);
     });
 
     it('should return 404 when user does not exist', () => {
+      const checkUserNotFoundResponse = (res: request.Response) => {
+        expect(res.body.message).toContain('User with ID 999 not found');
+      };
+
       return request(app.getHttpServer())
         .get('/users/999')
         .expect(404)
-        .expect((res) => {
-          expect(res.body.message).toContain('User with ID 999 not found');
-        });
+        .expect(checkUserNotFoundResponse);
     });
   });
 
@@ -157,16 +165,18 @@ describe('UsersController (e2e)', () => {
         age: 41,
       };
 
+      const checkUpdateUserResponse = (res: request.Response) => {
+        expect(res.body.id).toBe(userId);
+        expect(res.body.name).toBe(updateUserDto.name);
+        expect(res.body.email).toBe(createUserDto.email); // no cambió
+        expect(res.body.age).toBe(updateUserDto.age);
+      };
+
       return request(app.getHttpServer())
         .patch(`/users/${userId}`)
         .send(updateUserDto)
         .expect(200)
-        .expect((res) => {
-          expect(res.body.id).toBe(userId);
-          expect(res.body.name).toBe(updateUserDto.name);
-          expect(res.body.email).toBe(createUserDto.email); // no cambió
-          expect(res.body.age).toBe(updateUserDto.age);
-        });
+        .expect(checkUpdateUserResponse);
     });
 
     it('should return 404 when updating non-existent user', () => {
@@ -221,31 +231,34 @@ describe('UsersController (e2e)', () => {
       const userId = createResponse.body.id;
 
       // 2. Leer usuario
+      const checkReadUserResponse = (res: request.Response) => {
+        expect(res.body.name).toBe(createUserDto.name);
+      };
       await request(app.getHttpServer())
         .get(`/users/${userId}`)
         .expect(200)
-        .expect((res) => {
-          expect(res.body.name).toBe(createUserDto.name);
-        });
+        .expect(checkReadUserResponse);
 
       // 3. Actualizar usuario
       const updateUserDto = { age: 28 };
+      const checkUpdateUserResponse = (res: request.Response) => {
+        expect(res.body.age).toBe(28);
+      };
       await request(app.getHttpServer())
         .patch(`/users/${userId}`)
         .send(updateUserDto)
         .expect(200)
-        .expect((res) => {
-          expect(res.body.age).toBe(28);
-        });
+        .expect(checkUpdateUserResponse);
 
       // 4. Verificar en lista de usuarios
+      const checkUserListResponse = (res: request.Response) => {
+        const user = res.body.find((u) => u.id === userId);
+        expect(user.age).toBe(28);
+      };
       await request(app.getHttpServer())
         .get('/users')
         .expect(200)
-        .expect((res) => {
-          const user = res.body.find((u) => u.id === userId);
-          expect(user.age).toBe(28);
-        });
+        .expect(checkUserListResponse);
 
       // 5. Eliminar usuario
       await request(app.getHttpServer())
