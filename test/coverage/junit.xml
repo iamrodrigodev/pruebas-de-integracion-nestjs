@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="61" failures="0" errors="0" time="3.257">
+  <testsuite name="Flujo completo de integración: Usuario → Post → Comentarios (e2e)" errors="0" failures="0" skipped="0" timestamp="2025-11-07T17:16:45" time="2.073" tests="3">
+    <testcase classname="Flujo completo de integración: Usuario → Post → Comentarios (e2e) Flujo básico con un usuario debe crear usuario, post y comentario, verificando todas las relaciones" name="Flujo completo de integración: Usuario → Post → Comentarios (e2e) Flujo básico con un usuario debe crear usuario, post y comentario, verificando todas las relaciones" time="0.326">
+    </testcase>
+    <testcase classname="Flujo completo de integración: Usuario → Post → Comentarios (e2e) Flujo con múltiples usuarios interactuando debe manejar múltiples usuarios creando posts y comentando" name="Flujo completo de integración: Usuario → Post → Comentarios (e2e) Flujo con múltiples usuarios interactuando debe manejar múltiples usuarios creando posts y comentando" time="0.074">
+    </testcase>
+    <testcase classname="Flujo completo de integración: Usuario → Post → Comentarios (e2e) Flujo con múltiples usuarios interactuando debe permitir un usuario crear múltiples posts con múltiples comentarios" name="Flujo completo de integración: Usuario → Post → Comentarios (e2e) Flujo con múltiples usuarios interactuando debe permitir un usuario crear múltiples posts con múltiples comentarios" time="0.084">
+    </testcase>
+  </testsuite>
+  <testsuite name="Integración Users ↔ Posts (e2e)" errors="0" failures="0" skipped="0" timestamp="2025-11-07T17:16:45" time="2.104" tests="5">
+    <testcase classname="Integración Users ↔ Posts (e2e) Relación User → Posts debe crear un post asociado a un usuario" name="Integración Users ↔ Posts (e2e) Relación User → Posts debe crear un post asociado a un usuario" time="0.325">
+    </testcase>
+    <testcase classname="Integración Users ↔ Posts (e2e) Relación User → Posts debe obtener todos los posts de un usuario específico" name="Integración Users ↔ Posts (e2e) Relación User → Posts debe obtener todos los posts de un usuario específico" time="0.067">
+    </testcase>
+    <testcase classname="Integración Users ↔ Posts (e2e) Relación User → Posts debe obtener un usuario con todos sus posts" name="Integración Users ↔ Posts (e2e) Relación User → Posts debe obtener un usuario con todos sus posts" time="0.054">
+    </testcase>
+    <testcase classname="Integración Users ↔ Posts (e2e) Consultas avanzadas debe manejar usuarios sin posts" name="Integración Users ↔ Posts (e2e) Consultas avanzadas debe manejar usuarios sin posts" time="0.033">
+    </testcase>
+    <testcase classname="Integración Users ↔ Posts (e2e) Consultas avanzadas debe distinguir entre posts publicados y no publicados" name="Integración Users ↔ Posts (e2e) Consultas avanzadas debe distinguir entre posts publicados y no publicados" time="0.04">
+    </testcase>
+  </testsuite>
+  <testsuite name="Integración Posts ↔ Comments (e2e)" errors="0" failures="0" skipped="0" timestamp="2025-11-07T17:16:45" time="2.172" tests="6">
+    <testcase classname="Integración Posts ↔ Comments (e2e) Relación Post → Comments debe crear un comentario asociado a un post" name="Integración Posts ↔ Comments (e2e) Relación Post → Comments debe crear un comentario asociado a un post" time="0.329">
+    </testcase>
+    <testcase classname="Integración Posts ↔ Comments (e2e) Relación Post → Comments debe obtener todos los comentarios de un post" name="Integración Posts ↔ Comments (e2e) Relación Post → Comments debe obtener todos los comentarios de un post" time="0.07">
+    </testcase>
+    <testcase classname="Integración Posts ↔ Comments (e2e) Relación Post → Comments debe obtener un post con todos sus comentarios" name="Integración Posts ↔ Comments (e2e) Relación Post → Comments debe obtener un post con todos sus comentarios" time="0.06">
+    </testcase>
+    <testcase classname="Integración Posts ↔ Comments (e2e) Comentarios de múltiples usuarios debe permitir múltiples usuarios comentar en el mismo post" name="Integración Posts ↔ Comments (e2e) Comentarios de múltiples usuarios debe permitir múltiples usuarios comentar en el mismo post" time="0.052">
+    </testcase>
+    <testcase classname="Integración Posts ↔ Comments (e2e) Comentarios de múltiples usuarios debe mantener la integridad de comentarios al filtrar por autor" name="Integración Posts ↔ Comments (e2e) Comentarios de múltiples usuarios debe mantener la integridad de comentarios al filtrar por autor" time="0.049">
+    </testcase>
+    <testcase classname="Integración Posts ↔ Comments (e2e) Posts sin comentarios debe manejar posts sin comentarios correctamente" name="Integración Posts ↔ Comments (e2e) Posts sin comentarios debe manejar posts sin comentarios correctamente" time="0.028">
+    </testcase>
+  </testsuite>
+  <testsuite name="UsersController (e2e)" errors="0" failures="0" skipped="0" timestamp="2025-11-07T17:16:45" time="2.183" tests="11">
+    <testcase classname="UsersController (e2e) POST /users should create a new user" name="UsersController (e2e) POST /users should create a new user" time="0.301">
+    </testcase>
+    <testcase classname="UsersController (e2e) POST /users should create multiple users with different IDs" name="UsersController (e2e) POST /users should create multiple users with different IDs" time="0.036">
+    </testcase>
+    <testcase classname="UsersController (e2e) GET /users should return an empty array when no users exist" name="UsersController (e2e) GET /users should return an empty array when no users exist" time="0.036">
+    </testcase>
+    <testcase classname="UsersController (e2e) GET /users should return all users" name="UsersController (e2e) GET /users should return all users" time="0.038">
+    </testcase>
+    <testcase classname="UsersController (e2e) GET /users/:id should return a specific user by ID" name="UsersController (e2e) GET /users/:id should return a specific user by ID" time="0.041">
+    </testcase>
+    <testcase classname="UsersController (e2e) GET /users/:id should return 404 when user does not exist" name="UsersController (e2e) GET /users/:id should return 404 when user does not exist" time="0.025">
+    </testcase>
+    <testcase classname="UsersController (e2e) PATCH /users/:id should update a user" name="UsersController (e2e) PATCH /users/:id should update a user" time="0.035">
+    </testcase>
+    <testcase classname="UsersController (e2e) PATCH /users/:id should return 404 when updating non-existent user" name="UsersController (e2e) PATCH /users/:id should return 404 when updating non-existent user" time="0.019">
+    </testcase>
+    <testcase classname="UsersController (e2e) DELETE /users/:id should delete a user" name="UsersController (e2e) DELETE /users/:id should delete a user" time="0.025">
+    </testcase>
+    <testcase classname="UsersController (e2e) DELETE /users/:id should return 404 when deleting non-existent user" name="UsersController (e2e) DELETE /users/:id should return 404 when deleting non-existent user" time="0.016">
+    </testcase>
+    <testcase classname="UsersController (e2e) Integration flow should handle a complete CRUD cycle" name="UsersController (e2e) Integration flow should handle a complete CRUD cycle" time="0.041">
+    </testcase>
+  </testsuite>
+  <testsuite name="Operaciones de Actualización (e2e)" errors="0" failures="0" skipped="0" timestamp="2025-11-07T17:16:45" time="2.211" tests="7">
+    <testcase classname="Operaciones de Actualización (e2e) Actualización de Posts debe actualizar un post sin afectar sus comentarios" name="Operaciones de Actualización (e2e) Actualización de Posts debe actualizar un post sin afectar sus comentarios" time="0.342">
+    </testcase>
+    <testcase classname="Operaciones de Actualización (e2e) Actualización de Posts debe actualizar contenido del post manteniendo las relaciones" name="Operaciones de Actualización (e2e) Actualización de Posts debe actualizar contenido del post manteniendo las relaciones" time="0.073">
+    </testcase>
+    <testcase classname="Operaciones de Actualización (e2e) Actualización de Posts debe poder publicar y despublicar un post" name="Operaciones de Actualización (e2e) Actualización de Posts debe poder publicar y despublicar un post" time="0.066">
+    </testcase>
+    <testcase classname="Operaciones de Actualización (e2e) Actualización de Comentarios debe actualizar un comentario sin afectar el post" name="Operaciones de Actualización (e2e) Actualización de Comentarios debe actualizar un comentario sin afectar el post" time="0.042">
+    </testcase>
+    <testcase classname="Operaciones de Actualización (e2e) Actualización de Usuarios debe actualizar un usuario sin afectar sus posts y comentarios" name="Operaciones de Actualización (e2e) Actualización de Usuarios debe actualizar un usuario sin afectar sus posts y comentarios" time="0.041">
+    </testcase>
+    <testcase classname="Operaciones de Actualización (e2e) Actualizaciones parciales debe permitir actualizar solo un campo de un post" name="Operaciones de Actualización (e2e) Actualizaciones parciales debe permitir actualizar solo un campo de un post" time="0.037">
+    </testcase>
+    <testcase classname="Operaciones de Actualización (e2e) Actualizaciones parciales debe permitir actualizar múltiples campos simultáneamente" name="Operaciones de Actualización (e2e) Actualizaciones parciales debe permitir actualizar múltiples campos simultáneamente" time="0.026">
+    </testcase>
+  </testsuite>
+  <testsuite name="Operaciones en Cascada (e2e)" errors="0" failures="0" skipped="0" timestamp="2025-11-07T17:16:45" time="2.255" tests="6">
+    <testcase classname="Operaciones en Cascada (e2e) Eliminación en cascada: User → Posts → Comments debe eliminar posts y comentarios cuando se elimina un usuario" name="Operaciones en Cascada (e2e) Eliminación en cascada: User → Posts → Comments debe eliminar posts y comentarios cuando se elimina un usuario" time="0.362">
+    </testcase>
+    <testcase classname="Operaciones en Cascada (e2e) Eliminación en cascada: User → Posts → Comments debe eliminar múltiples posts y sus comentarios al eliminar un usuario" name="Operaciones en Cascada (e2e) Eliminación en cascada: User → Posts → Comments debe eliminar múltiples posts y sus comentarios al eliminar un usuario" time="0.122">
+    </testcase>
+    <testcase classname="Operaciones en Cascada (e2e) Eliminación en cascada: Post → Comments debe eliminar comentarios cuando se elimina un post" name="Operaciones en Cascada (e2e) Eliminación en cascada: Post → Comments debe eliminar comentarios cuando se elimina un post" time="0.047">
+    </testcase>
+    <testcase classname="Operaciones en Cascada (e2e) Eliminación en cascada: Post → Comments debe eliminar solo los comentarios del post eliminado" name="Operaciones en Cascada (e2e) Eliminación en cascada: Post → Comments debe eliminar solo los comentarios del post eliminado" time="0.057">
+    </testcase>
+    <testcase classname="Operaciones en Cascada (e2e) Preservación de entidades relacionadas no debe eliminar posts de otros usuarios al eliminar un usuario" name="Operaciones en Cascada (e2e) Preservación de entidades relacionadas no debe eliminar posts de otros usuarios al eliminar un usuario" time="0.04">
+    </testcase>
+    <testcase classname="Operaciones en Cascada (e2e) Preservación de entidades relacionadas no debe eliminar comentarios de otros usuarios en posts compartidos" name="Operaciones en Cascada (e2e) Preservación de entidades relacionadas no debe eliminar comentarios de otros usuarios en posts compartidos" time="0.04">
+    </testcase>
+  </testsuite>
+  <testsuite name="Manejo de Errores en Integración (e2e)" errors="0" failures="0" skipped="0" timestamp="2025-11-07T17:16:45" time="2.433" tests="23">
+    <testcase classname="Manejo de Errores en Integración (e2e) Violaciones de Foreign Key debe retornar error al crear post con usuario inexistente" name="Manejo de Errores en Integración (e2e) Violaciones de Foreign Key debe retornar error al crear post con usuario inexistente" time="0.277">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Violaciones de Foreign Key debe retornar error al crear comentario con post inexistente" name="Manejo de Errores en Integración (e2e) Violaciones de Foreign Key debe retornar error al crear comentario con post inexistente" time="0.057">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Violaciones de Foreign Key debe retornar error al crear comentario con usuario inexistente" name="Manejo de Errores en Integración (e2e) Violaciones de Foreign Key debe retornar error al crear comentario con usuario inexistente" time="0.043">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al buscar usuario inexistente" name="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al buscar usuario inexistente" time="0.031">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al buscar post inexistente" name="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al buscar post inexistente" time="0.047">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al buscar comentario inexistente" name="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al buscar comentario inexistente" time="0.023">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al intentar actualizar usuario inexistente" name="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al intentar actualizar usuario inexistente" time="0.021">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al intentar actualizar post inexistente" name="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al intentar actualizar post inexistente" time="0.018">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al intentar actualizar comentario inexistente" name="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al intentar actualizar comentario inexistente" time="0.02">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al intentar eliminar usuario inexistente" name="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al intentar eliminar usuario inexistente" time="0.018">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al intentar eliminar post inexistente" name="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al intentar eliminar post inexistente" time="0.02">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al intentar eliminar comentario inexistente" name="Manejo de Errores en Integración (e2e) Recursos No Encontrados (404) debe retornar 404 al intentar eliminar comentario inexistente" time="0.018">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Consultas con filtros vacíos debe retornar array vacío al filtrar posts de usuario sin posts" name="Manejo de Errores en Integración (e2e) Consultas con filtros vacíos debe retornar array vacío al filtrar posts de usuario sin posts" time="0.022">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Consultas con filtros vacíos debe retornar array vacío al filtrar comentarios de post sin comentarios" name="Manejo de Errores en Integración (e2e) Consultas con filtros vacíos debe retornar array vacío al filtrar comentarios de post sin comentarios" time="0.021">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Consultas con filtros vacíos debe retornar array vacío al filtrar comentarios de usuario sin comentarios" name="Manejo de Errores en Integración (e2e) Consultas con filtros vacíos debe retornar array vacío al filtrar comentarios de usuario sin comentarios" time="0.018">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Consultas con filtros vacíos debe retornar array vacío cuando no hay posts" name="Manejo de Errores en Integración (e2e) Consultas con filtros vacíos debe retornar array vacío cuando no hay posts" time="0.014">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Consultas con filtros vacíos debe retornar array vacío cuando no hay usuarios" name="Manejo de Errores en Integración (e2e) Consultas con filtros vacíos debe retornar array vacío cuando no hay usuarios" time="0.014">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Consultas con filtros vacíos debe retornar array vacío cuando no hay comentarios" name="Manejo de Errores en Integración (e2e) Consultas con filtros vacíos debe retornar array vacío cuando no hay comentarios" time="0.013">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Integridad de datos después de errores no debe crear post si falla la creación debido a foreign key" name="Manejo de Errores en Integración (e2e) Integridad de datos después de errores no debe crear post si falla la creación debido a foreign key" time="0.017">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Integridad de datos después de errores no debe crear comentario si falla la creación" name="Manejo de Errores en Integración (e2e) Integridad de datos después de errores no debe crear comentario si falla la creación" time="0.019">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Integridad de datos después de errores debe mantener datos existentes si una actualización falla" name="Manejo de Errores en Integración (e2e) Integridad de datos después de errores debe mantener datos existentes si una actualización falla" time="0.02">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Casos límite debe manejar consultas con IDs de diferentes tipos" name="Manejo de Errores en Integración (e2e) Casos límite debe manejar consultas con IDs de diferentes tipos" time="0.07">
+    </testcase>
+    <testcase classname="Manejo de Errores en Integración (e2e) Casos límite debe manejar eliminaciones múltiples del mismo recurso" name="Manejo de Errores en Integración (e2e) Casos límite debe manejar eliminaciones múltiples del mismo recurso" time="0.018">
+    </testcase>
+  </testsuite>
+</testsuites>
