@@ -9,5 +9,12 @@
   ],
   "coverageDirectory": "./coverage",
   "testEnvironment": "node",
-  "coverageProvider": "v8"
+  "coverageProvider": "v8",
+  "reporters": [
+    "default",
+    ["jest-junit", {
+      "outputDirectory": "test/coverage",
+      "outputName": "junit.xml"
+    }]
+  ]
 }
