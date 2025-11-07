@@ -248,6 +248,13 @@ test/
   - Patrones de testing (AAA, hooks)
   - Mejores prácticas implementadas
 
+- **[SONAR_SETUP.md](./SONAR_SETUP.md)**: Configuración y uso de SonarQube:
+  - Prerequisitos y configuración del servidor
+  - Ejecución de tests con cobertura
+  - Generación de reportes para SonarQube
+  - Estructura de directorios de cobertura
+  - Troubleshooting y solución de problemas comunes
+
 ---
 
 <!-- Referencias de badges -->
