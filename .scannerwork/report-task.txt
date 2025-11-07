@@ -1,0 +1,6 @@
+projectKey=backend-nest
+serverUrl=http://localhost:9000
+serverVersion=25.11.0.114957
+dashboardUrl=http://localhost:9000/dashboard?id=backend-nest
+ceTaskId=b5928902-61ae-42a7-bd31-2eb66b5b6fa2
+ceTaskUrl=http://localhost:9000/api/ce/task?id=b5928902-61ae-42a7-bd31-2eb66b5b6fa2
