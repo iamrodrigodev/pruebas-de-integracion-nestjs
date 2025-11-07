@@ -13,10 +13,10 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest --config ./test/jest-e2e.json",
-    "test:watch": "jest --config ./test/jest-e2e.json --watch",
-    "test:cov": "c8 npm run test",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --config ./test/jest-e2e.json --runInBand",
+    "test": "jest --config jest.config.js",
+    "test:watch": "jest --config jest.config.js --watch",
+    "test:cov": "jest --config jest.config.js --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --config jest.config.js --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:e2e:watch": "jest --config ./test/jest-e2e.json --watch",
     "test:e2e:cov": "jest --config ./test/jest-e2e.json --coverage",
@@ -24,7 +24,9 @@
     "test:e2e:verbose": "jest --config ./test/jest-e2e.json --verbose",
     "test:e2e:silent": "jest --config ./test/jest-e2e.json --silent",
     "test:e2e:bail": "jest --config ./test/jest-e2e.json --bail",
-    "test:e2e:ci": "jest --config ./test/jest-e2e.json --ci --coverage --maxWorkers=2"
+    "test:e2e:ci": "jest --config ./test/jest-e2e.json --ci --coverage --maxWorkers=2",
+    "test:all": "npm run test:cov; npm run test:e2e:cov",
+    "sonar": "sonar-scanner"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -53,6 +55,7 @@
     "globals": "^16.0.0",
     "jest": "^30.0.0",
     "jest-junit": "^16.0.0",
+    "jest-sonar-reporter": "^2.0.0",
     "prettier": "^3.4.2",
     "source-map-support": "^0.5.21",
     "supertest": "^7.0.0",

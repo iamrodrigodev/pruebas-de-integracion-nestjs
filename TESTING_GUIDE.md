@@ -788,7 +788,138 @@ Test Suites: 7 passed, 7 total
 Tests:       61 passed, 61 total
 Snapshots:   0 total
 Time:        3.478 s
+
+Coverage Summary:
+-----------------------------------|---------|----------|---------|---------|
+File                               | % Stmts | % Branch | % Funcs | % Lines |
+-----------------------------------|---------|----------|---------|---------|
+All files                          |   99.52 |    85.18 |   97.87 |   99.52 |
+-----------------------------------|---------|----------|---------|---------|
 ```
+
+---
+
+## Integración con SonarQube
+
+### ¿Qué es SonarQube?
+
+**SonarQube** es una plataforma de análisis estático de código que permite:
+- Detectar bugs y vulnerabilidades de seguridad
+- Identificar code smells y deuda técnica
+- Medir cobertura de código
+- Evaluar la calidad general del código
+
+### Configuración en el Proyecto
+
+El proyecto está configurado para enviar reportes de cobertura y ejecución de tests a SonarQube.
+
+#### Archivos de Configuración
+
+1. **`sonar-project.properties`** - Configuración principal de SonarQube
+```properties
+sonar.projectKey=backend-nest
+sonar.projectName=Backend NestJS
+sonar.sources=src
+sonar.tests=test
+
+# Reportes de cobertura
+sonar.javascript.lcov.reportPaths=coverage/lcov.info
+sonar.typescript.lcov.reportPaths=coverage/lcov.info
+sonar.testExecutionReportPaths=coverage/junit.xml
+```
+
+2. **`test/jest-e2e.json`** - Configuración de Jest para generar reportes
+```json
+{
+  "coverageReporters": ["json", "lcov", "text", "clover", "html"],
+  "reporters": [
+    "default",
+    ["jest-junit", {
+      "outputDirectory": "coverage",
+      "outputName": "junit.xml"
+    }]
+  ]
+}
+```
+
+### Archivos Generados para SonarQube
+
+Cuando ejecutas `npm run test:e2e:cov`, se generan estos archivos:
+
+```
+coverage/
+├── lcov.info              # Reporte de cobertura (formato LCOV) ← SonarQube
+├── junit.xml              # Reporte de ejecución de tests (formato JUnit) ← SonarQube
+├── clover.xml             # Reporte adicional de cobertura
+├── coverage-final.json    # Cobertura en formato JSON
+└── lcov-report/           # Reporte HTML (para visualizar localmente)
+    └── index.html
+```
+
+### Ejecutar Análisis de SonarQube
+
+#### Opción 1: Script Automatizado (PowerShell)
+
+```bash
+# Ejecuta tests con cobertura + análisis de SonarQube
+.\run-tests-and-sonar.ps1
+```
+
+Este script:
+1. ✅ Limpia cobertura anterior
+2. ✅ Ejecuta tests E2E con cobertura
+3. ✅ Verifica que los archivos se generaron correctamente
+4. ✅ (Opcional) Ejecuta análisis de SonarQube
+
+#### Opción 2: Comandos Manuales
+
+```bash
+# 1. Limpiar cobertura anterior (opcional)
+Remove-Item -Recurse -Force coverage -ErrorAction SilentlyContinue
+
+# 2. Ejecutar tests con cobertura
+npm run test:e2e:cov
+
+# 3. Verificar archivos generados
+Test-Path coverage/lcov.info   # Debe devolver True
+Test-Path coverage/junit.xml   # Debe devolver True
+
+# 4. Ejecutar análisis de SonarQube
+npm run sonar
+# O directamente: sonar-scanner
+```
+
+### Visualizar Cobertura Localmente
+
+Además del análisis de SonarQube, puedes ver el reporte de cobertura en tu navegador:
+
+```bash
+# Windows
+Start-Process coverage/lcov-report/index.html
+
+# O abrir manualmente el archivo:
+# coverage/lcov-report/index.html
+```
+
+### Métricas en SonarQube
+
+Una vez ejecutado el análisis, SonarQube mostrará:
+
+| Métrica | Descripción | Valor Esperado |
+|---------|-------------|----------------|
+| **Cobertura de código** | % de líneas ejecutadas por los tests | ~99.5% |
+| **Duplicación** | Código duplicado | <3% |
+| **Bugs** | Errores de lógica detectados | 0 |
+| **Vulnerabilidades** | Problemas de seguridad | 0 |
+| **Code Smells** | Problemas de mantenibilidad | <10 |
+| **Tests ejecutados** | Total de tests | 61 |
+| **Tests pasados** | Tests exitosos | 61 |
+
+### Documentación Adicional
+
+Para más detalles sobre la configuración de SonarQube, consulta:
+- **`SONAR_SETUP.md`** - Guía completa de configuración de SonarQube
+- **`run-tests-and-sonar.ps1`** - Script automatizado con validaciones
 
 ---
 
@@ -830,8 +961,14 @@ Time:        3.478 s
 
 15. Supertest. (2024). *Supertest: Super-agent driven library for testing HTTP servers* [Software]. GitHub. https://github.com/visionmedia/supertest
 
+16. SonarSource. (2024). *SonarQube documentation*. https://docs.sonarqube.org/latest/
+
+17. Jest Community. (2024). *jest-junit: A Jest reporter that creates compatible junit xml files* [Software]. GitHub. https://github.com/jest-community/jest-junit
+
 ### Artículos y Recursos Web
 
-16. Fowler, M. (2018). *TestPyramid*. Martin Fowler's Bliki. https://martinfowler.com/bliki/TestPyramid.html
+18. Fowler, M. (2018). *TestPyramid*. Martin Fowler's Bliki. https://martinfowler.com/bliki/TestPyramid.html
 
-17. Fowler, M. (2021). *IntegrationTest*. Martin Fowler's Bliki. https://martinfowler.com/bliki/IntegrationTest.html
+19. Fowler, M. (2021). *IntegrationTest*. Martin Fowler's Bliki. https://martinfowler.com/bliki/IntegrationTest.html
+
+20. SonarSource. (2024). *JavaScript/TypeScript test execution*. SonarQube Documentation. https://docs.sonarqube.org/latest/analysis/test-coverage/javascript-typescript-test-coverage/
