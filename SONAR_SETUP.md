@@ -36,12 +36,29 @@ Test-Path coverage/junit.xml
 
 ### 3. Ejecutar análisis de SonarQube
 
+#### Opción 1: SonarQube Cloud (Remoto)
 ```bash
-# Si tienes el script configurado en package.json
+# Comando configurado para SonarQube Cloud
 npm run sonar
+```
+Este comando ejecuta: `sonar-scanner` (usa la configuración de `sonar-project.properties`)
 
-# O directamente con sonar-scanner
+#### Opción 2: SonarQube Local (Servidor Local)
+```bash
+# Comando configurado para servidor SonarQube local
+npm run sonar:local
+```
+Este comando ejecuta: `sonar-scanner -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqa_7218f8ae2f191494a6f57ac201927de34241f031`
+
+> **Nota**: El token en `sonar:local` es específico para tu servidor local. Si estás usando SonarQube Cloud, necesitas configurar tu organización en `sonar-project.properties`.
+
+#### Comando directo (sin npm scripts)
+```bash
+# SonarQube Cloud
 sonar-scanner
+
+# SonarQube Local
+sonar-scanner -Dsonar.host.url=http://localhost:9000 -Dsonar.token=TU_TOKEN_AQUI
 ```
 
 ## Configuración de SonarQube Server
